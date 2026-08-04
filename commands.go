@@ -1,8 +1,6 @@
 package main
 
-import (
-	"errors"
-)
+import "errors"
 
 type command struct {
 	Name string
@@ -23,12 +21,4 @@ func (c *commands) run(s *state, cmd command) error {
 		return errors.New("command not found")
 	}
 	return f(s, cmd)
-}
-
-func (c *commands) agg(s *state, cmd command) error {
-	a := c.registeredCommands[cmd.Name]
-	if a == nil {
-		return errors.New("command not found")
-	}
-	return a(s, cmd)
 }
